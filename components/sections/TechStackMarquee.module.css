@@ -1,0 +1,95 @@
+.section {
+  padding: var(--spacing-16) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: var(--spacing-20) 0;
+  }
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-muted-foreground);
+  text-align: center;
+  margin-bottom: var(--spacing-8);
+}
+
+.marqueeContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.fadeLeft {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rem;
+  background: linear-gradient(to right, var(--color-background), transparent);
+  z-index: 10;
+}
+
+.fadeRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rem;
+  background: linear-gradient(to left, var(--color-background), transparent);
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .fadeLeft,
+  .fadeRight {
+    width: 10rem;
+  }
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--duration-slower) linear infinite;
+  animation-duration: 40s;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-6);
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-fast) var(--ease-out-expo);
+}
+
+.techItem:hover {
+  background-color: var(--color-surface-1);
+}
+
+.techIcon {
+  font-size: 1.125rem;
+  opacity: 0.6;
+}
+
+.techName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+}

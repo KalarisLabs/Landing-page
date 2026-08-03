@@ -1,0 +1,43 @@
+# Kalaris Labs - Full Documentation Context
+> Comprehensive context for LLMs and AI agents regarding Kalaris Labs architecture and infrastructure.
+
+## Core Philosophy
+Science is too important to be bottle-necked by human limits. We are building the infrastructure to transition scientific discovery from an artisanal, human-bound process to an industrial, computationally scalable one.
+
+## Platform Architecture
+
+### 1. Research Runtime
+Orchestrates end-to-end research workflows. Decomposes high-level scientific goals into executable tasks across a graph of specialized AI agents.
+
+### 2. Inference Engine
+GPU-native inference stack utilizing TensorRT, dynamic batching, and intelligent model routing to serve 100B+ parameter models with minimal latency.
+
+### 3. Agent Skills
+Modular capabilities that agents can invoke:
+- Literature Review
+- Hypothesis Generation
+- Peer Review
+- Citation Validation
+- Benchmarking
+- Simulation
+- Statistics
+- Experiment Planning
+
+### 4. Verification System
+Automated reproducibility checking, statistical validation, and adversarial review. Every claim is checked against source material.
+
+### 5. Multi-Agent Graph
+A directed graph of agents (Planner, Researcher, Critic, Verifier, Publisher) that collaborate and converge on verified scientific output.
+
+## Technology Stack
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- GSAP / Lenis for animation and scroll
+
+## Contact & Links
+- Website: https://kalarislabs.com
+- GitHub: https://github.com/kalarislabs
+- Open Source: https://kalarislabs.com/open-source

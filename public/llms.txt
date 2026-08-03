@@ -1,0 +1,17 @@
+# Kalaris Labs
+> The infrastructure layer for agentic scientific computing.
+
+## About
+Kalaris Labs is building the infrastructure to transition scientific discovery from an artisanal, human-bound process to an industrial, computationally scalable one. We provide self-learning AI systems, GPU-native execution, optimized inference, multi-agent orchestration, and verifiable research workflows.
+
+## Links
+- Website: https://kalarislabs.com
+- Manifesto: https://kalarislabs.com/manifesto
+- Documentation: https://kalarislabs.com/docs
+- GitHub: https://github.com/kalarislabs
+
+## Architecture
+Our platform consists of a Research Runtime, Inference Engine, Agent Skills module, and Verification system, all built on GPU-native infrastructure.
+
+## Contact
+Email: research@kalarislabs.com

@@ -1,0 +1,10 @@
+/* TEAM */
+  Designer: Kalaris Labs Design Team
+  Developer: Kalaris Labs Engineering
+  Location: San Francisco, CA / Global
+
+/* SITE */
+  Last update: 2026-08-02
+  Standards: HTML5, CSS3, ES2026
+  Components: React 19, Next.js 15, Tailwind CSS v4, Framer Motion
+  Software: Visual Studio Code, Cursor
