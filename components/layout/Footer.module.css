@@ -1,0 +1,148 @@
+.footer {
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-24) 0 var(--spacing-12) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-12);
+  margin-bottom: var(--spacing-20);
+}
+
+@media (min-width: 768px) {
+  .contentWrapper {
+    grid-template-columns: 1.5fr 2.5fr;
+    gap: var(--spacing-16);
+  }
+}
+
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.brandTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-foreground);
+}
+
+.brandDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-muted-foreground);
+  max-width: 360px;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-10);
+}
+
+@media (min-width: 640px) {
+  .linksGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.columnTitle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-muted-foreground);
+  margin-bottom: var(--spacing-5);
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.linkItem a {
+  font-size: 0.9375rem;
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+.linkItem a:hover {
+  color: var(--color-foreground);
+}
+
+/* Bottom Bar */
+.bottomBar {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+@media (min-width: 768px) {
+  .bottomBar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-5);
+}
+
+.socialIcon {
+  color: var(--color-muted-foreground);
+  transition: color var(--duration-fast);
+}
+
+.socialIcon:hover {
+  color: var(--color-foreground);
+}
+
+/* Big Tech Branding Section */
+.giantBackgroundContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--spacing-16);
+  padding-top: var(--spacing-8);
+  padding-bottom: var(--spacing-4);
+  border-top: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.giantText {
+  font-family: var(--font-tech);
+  font-size: clamp(2rem, 7.5vw, 9rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.8;
+  color: var(--color-foreground);
+  opacity: 0.95;
+  user-select: none;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  display: inline-block;
+}

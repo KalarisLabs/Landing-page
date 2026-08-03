@@ -56,6 +56,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://kalarislabs.com",
   },
+  icons: {
+    icon: "/assets/black logo kalaris logo ( geometric).png",
+    shortcut: "/assets/black logo kalaris logo ( geometric).png",
+    apple: "/assets/black logo kalaris logo ( geometric).png",
+  },
 };
 
 export default function RootLayout({
@@ -125,12 +130,17 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Syncopate:wght@700;900&display=swap"
           rel="stylesheet"
         />
         <link
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
           rel="stylesheet"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/assets/black logo kalaris logo ( geometric).png"
         />
         <script
           type="application/ld+json"

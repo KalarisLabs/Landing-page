@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -49,34 +50,19 @@ export default function Navbar() {
             : "bg-transparent"
         )}
       >
-        <Container className="flex items-center justify-between h-16 md:h-20">
+        <Container className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group" aria-label="Kalaris Labs Home">
-            {/* Geometric mark SVG */}
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 100 100"
-              fill="none"
-              className="transition-transform duration-300 group-hover:rotate-12"
-            >
-              {/* Radiating geometric rays */}
-              {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-                <rect
-                  key={i}
-                  x="30"
-                  y="47"
-                  width="40"
-                  height="5"
-                  rx="1"
-                  fill="currentColor"
-                  transform={`rotate(${-60 + i * 20} 30 50)`}
-                  opacity={0.7 + i * 0.04}
-                />
-              ))}
-            </svg>
-            <span className="text-[15px] font-medium tracking-[0.08em] uppercase">
-              Kalaris Labs
+            <Image
+              src="/assets/black logo kalaris logo ( geometric).png"
+              alt="KalarisLabs Logo"
+              width={44}
+              height={44}
+              priority
+              className="transition-transform duration-300 group-hover:rotate-12 -mt-0.5"
+            />
+            <span className="text-[22px] md:text-[26px] font-bold tracking-tight text-[var(--color-foreground)] leading-none">
+              KalarisLabs
             </span>
           </Link>
 

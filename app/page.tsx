@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import HeroSection from "@/components/sections/HeroSection";
-import TechStackMarquee from "@/components/sections/TechStackMarquee";
 import EditorialIntro from "@/components/sections/EditorialIntro";
 
 const ArchitectureDiagram = dynamic(() => import("@/components/sections/ArchitectureDiagram"));
@@ -21,7 +20,6 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <TechStackMarquee />
       <EditorialIntro />
       <ArchitectureDiagram />
       <InfrastructureGrid />

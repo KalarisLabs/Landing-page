@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { Terminal, Rss, ArrowUpRight } from "lucide-react";
+import { MessageSquare } from "lucide-react";
+import styles from "./Footer.module.css";
 
 const footerColumns = [
   {
@@ -55,125 +58,91 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--color-border)] bg-[var(--color-surface-0)]">
-      {/* Newsletter CTA */}
-      <Container className="py-16 md:py-20 border-b border-[var(--color-border)]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="max-w-lg">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-muted-foreground)] mb-3">
-              Stay updated
+    <footer className={styles.footer}>
+      <Container>
+        <div className={styles.contentWrapper}>
+          {/* Brand Column */}
+          <div className={styles.brandColumn}>
+            <span className={styles.brandTitle}>KalarisLabs</span>
+            <p className={styles.brandDescription}>
+              Infrastructure layer for agentic scientific computing. Made for teams scaling autonomous R&D.
             </p>
-            <h3 className="text-2xl md:text-3xl font-light text-[var(--color-foreground)]">
-              Research, engineering, and infrastructure updates from the frontier.
-            </h3>
           </div>
-          <div className="flex gap-3">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-lg border border-[var(--color-border-strong)] text-sm font-medium text-[var(--color-foreground)] hover:bg-[var(--color-surface-2)] transition-colors"
-            >
-              Get in touch
-              <ArrowUpRight size={14} />
-            </Link>
+
+          {/* Links Grid */}
+          <div className={styles.linksGrid}>
+            {footerColumns.map((column) => (
+              <div key={column.title}>
+                <p className={styles.columnTitle}>{column.title}</p>
+                <ul className={styles.linkList}>
+                  {column.links.map((link) => (
+                    <li key={link.href} className={styles.linkItem}>
+                      <Link href={link.href}>{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-      </Container>
 
-      {/* Link Columns */}
-      <Container className="py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          {footerColumns.map((column) => (
-            <div key={column.title}>
-              <p className="font-mono text-xs uppercase tracking-[0.15em] text-[var(--color-muted-foreground)] mb-4">
-                {column.title}
-              </p>
-              <ul className="space-y-2.5">
-                {column.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors duration-200"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Container>
+        {/* Bottom Bar */}
+        <div className={styles.bottomBar}>
+          <span className={styles.copyright}>
+            © {currentYear} Kalaris Labs. All rights reserved.
+          </span>
 
-      {/* Bottom Bar */}
-      <Container className="py-6 border-t border-[var(--color-border)]">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Logo + Copyright */}
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 100 100"
-                fill="none"
-                className="text-[var(--color-muted-foreground)]"
-              >
-                {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-                  <rect
-                    key={i}
-                    x="30"
-                    y="47"
-                    width="40"
-                    height="5"
-                    rx="1"
-                    fill="currentColor"
-                    transform={`rotate(${-60 + i * 20} 30 50)`}
-                    opacity={0.6 + i * 0.05}
-                  />
-                ))}
-              </svg>
-              <span className="text-xs font-medium tracking-wider uppercase text-[var(--color-muted-foreground)]">
-                Kalaris Labs
-              </span>
-            </div>
-            <span className="text-xs text-[var(--color-muted-foreground)]">
-              © {currentYear} Kalaris Labs. All rights reserved.
-            </span>
-          </div>
-
-          {/* Legal + Social */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4">
               {legalLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-xs text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
+                  className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
-            <div className="flex items-center gap-3 border-l border-[var(--color-border)] pl-4">
+
+            {/* Social Connect */}
+            <div className={styles.socialLinks}>
               <a
                 href="https://github.com/kalarislabs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
+                className={styles.socialIcon}
                 aria-label="GitHub"
               >
-                <Terminal size={16} />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
               </a>
               <a
-                href="/rss.xml"
-                className="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
-                aria-label="RSS Feed"
+                href="https://twitter.com/kalarislabs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="Twitter"
               >
-                <Rss size={16} />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+              </a>
+              <a
+                href="https://discord.gg/kalarislabs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialIcon}
+                aria-label="Discord"
+              >
+                <MessageSquare size={20} />
               </a>
             </div>
           </div>
         </div>
       </Container>
+
+      {/* Big Futuristic Tech Branding Section (Moved outside Container to span edge-to-edge) */}
+      <div className={styles.giantBackgroundContainer}>
+        <span className={styles.giantText}>KALARIS LABS</span>
+      </div>
     </footer>
   );
 }

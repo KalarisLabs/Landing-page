@@ -41,17 +41,39 @@ export default function EditorialIntro() {
   return (
     <section ref={ref} className="py-32 md:py-48">
       <Container>
-        <div className="max-w-[900px] mx-auto">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-muted-foreground)] mb-12">
-            The future of R&D
-          </p>
-          <p className="text-[clamp(1.5rem,3.5vw,2.75rem)] leading-[1.35] font-light tracking-tight">
-            {words.map((word, i) => (
-              <Word key={i} progress={scrollYProgress} index={i} total={words.length}>
-                {word}
-              </Word>
-            ))}
-          </p>
+        <div className="border border-[var(--color-border)] rounded-2xl overflow-hidden bg-[var(--color-surface-0)]">
+          {/* Frame Header */}
+          <div className="flex justify-between items-center border-b border-[var(--color-border)] px-6 py-3.5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              ) The Future of R&D
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              [1/5]
+            </span>
+          </div>
+
+          {/* Content */}
+          <div className="p-10 md:p-16">
+            <div className="max-w-[900px] mx-auto">
+              <p className="text-[clamp(1.5rem,3.5vw,2.75rem)] leading-[1.35] font-light tracking-tight">
+                {words.map((word, i) => (
+                  <Word key={i} progress={scrollYProgress} index={i} total={words.length}>
+                    {word}
+                  </Word>
+                ))}
+              </p>
+            </div>
+          </div>
+
+          {/* Frame Footer */}
+          <div className="flex justify-between items-center border-t border-[var(--color-border)] px-6 py-3.5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              ) Manifesto
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              Autonomous Science
+            </span>
+          </div>
         </div>
       </Container>
     </section>

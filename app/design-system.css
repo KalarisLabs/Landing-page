@@ -35,6 +35,7 @@
   --font-sans: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
   --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-tech: 'Syncopate', var(--font-mono), sans-serif;
 
   /* --- Spacing (8px system) --- */
   --spacing-0: 0;

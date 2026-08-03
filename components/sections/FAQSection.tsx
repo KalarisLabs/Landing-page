@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Plus, Minus } from "lucide-react";
 
 const faqs = [
@@ -33,52 +32,78 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 md:py-32 border-t border-[var(--color-border)]">
+    <section className="py-24 md:py-32">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-          <div className="lg:col-span-4">
-            <SectionLabel label="FAQ" index="11" />
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight mb-4">
-              Common Questions
-            </h2>
-            <p className="text-[var(--color-muted-foreground)]">
-              Everything you need to know about the platform and our approach to autonomous science.
-            </p>
+        <div className="border border-[var(--color-border)] rounded-2xl overflow-hidden bg-[var(--color-surface-0)]">
+          {/* Frame Header */}
+          <div className="flex justify-between items-center border-b border-[var(--color-border)] px-6 py-3.5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              ) FAQ
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              [5/5]
+            </span>
           </div>
 
-          <div className="lg:col-span-8 flex flex-col gap-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-1)] overflow-hidden transition-colors hover:border-[var(--color-border-strong)]"
-              >
-                <button
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="flex items-center justify-between w-full p-6 text-left"
+          {/* Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
+            {/* Left: Title */}
+            <div className="border-b lg:border-b-0 lg:border-r border-[var(--color-border)] p-8 lg:p-10">
+              <h2 className="text-[2rem] md:text-[2.25rem] font-bold tracking-tight mb-3">
+                Common Questions
+              </h2>
+              <p className="text-[var(--color-muted-foreground)] text-[0.9375rem]">
+                Everything you need to know about the platform and our approach to autonomous science.
+              </p>
+            </div>
+
+            {/* Right: Accordion */}
+            <div className="flex flex-col">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className={`border-b border-[var(--color-border)] last:border-b-0 transition-colors ${
+                    openIndex === index ? "bg-[var(--color-surface-1)]" : ""
+                  }`}
                 >
-                  <span className="text-base font-medium text-[var(--color-foreground)] pr-8">
-                    {faq.question}
-                  </span>
-                  <span className="text-[var(--color-muted-foreground)] shrink-0">
-                    {openIndex === index ? <Minus size={18} /> : <Plus size={18} />}
-                  </span>
-                </button>
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <div className="px-6 pb-6 pt-0 text-[var(--color-muted-foreground)] leading-relaxed">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                  <button
+                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                    className="flex items-center justify-between w-full p-6 text-left hover:bg-[var(--color-surface-1)] transition-colors"
+                  >
+                    <span className="text-[0.9375rem] font-medium text-[var(--color-foreground)] pr-8">
+                      {faq.question}
+                    </span>
+                    <span className="text-[var(--color-muted-foreground)] shrink-0">
+                      {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        <div className="px-6 pb-6 pt-0 text-[var(--color-muted-foreground)] text-sm leading-relaxed">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Frame Footer */}
+          <div className="flex justify-between items-center border-t border-[var(--color-border)] px-6 py-3.5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              ) Support
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              5 Questions
+            </span>
           </div>
         </div>
       </Container>

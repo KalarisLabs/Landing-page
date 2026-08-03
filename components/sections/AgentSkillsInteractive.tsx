@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 
 const skills = [
   {
@@ -75,66 +74,90 @@ export default function AgentSkillsInteractive() {
   return (
     <section className="py-24 md:py-32">
       <Container>
-        <div className="mb-16">
-          <SectionLabel label="Agent Skills" index="03" />
-          <h2 className="text-3xl md:text-4xl font-light tracking-tight mb-4">
-            Modular Agent Capabilities
-          </h2>
-          <p className="text-[var(--color-muted-foreground)] max-w-lg">
-            Each skill is an independently deployable module that agents compose at runtime.
-          </p>
-        </div>
+        <div className="border border-[var(--color-border)] rounded-2xl overflow-hidden bg-[var(--color-surface-0)]">
+          {/* Frame Header */}
+          <div className="flex justify-between items-center border-b border-[var(--color-border)] px-6 py-3.5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              ) Agent Skills
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              [3/5]
+            </span>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {skills.map((skill, i) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
-              onMouseEnter={() => setActive(i)}
-              onMouseLeave={() => setActive(null)}
-              className="group relative p-5 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-1)] hover:border-[var(--color-border-strong)] transition-all duration-300 cursor-default overflow-hidden"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-sm font-medium text-[var(--color-foreground)]">
-                      {skill.name}
-                    </h3>
-                    <span
-                      className="inline-block px-2 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider"
-                      style={{
-                        color: tagColors[skill.tag],
-                        backgroundColor: `color-mix(in oklch, ${tagColors[skill.tag]} 12%, transparent)`,
-                      }}
-                    >
-                      {skill.tag}
+          {/* Content */}
+          <div className="p-8 md:p-12">
+            <div className="mb-10">
+              <h2 className="text-[2rem] md:text-[2.25rem] font-bold tracking-tight mb-3">
+                Modular Agent Capabilities
+              </h2>
+              <p className="text-[var(--color-muted-foreground)] max-w-lg text-[0.9375rem]">
+                Each skill is an independently deployable module that agents compose at runtime.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--color-border)] rounded-xl overflow-hidden border border-[var(--color-border)]">
+              {skills.map((skill, i) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-20px" }}
+                  transition={{ duration: 0.4, delay: i * 0.04 }}
+                  onMouseEnter={() => setActive(i)}
+                  onMouseLeave={() => setActive(null)}
+                  className="group relative p-5 bg-[var(--color-surface-0)] hover:bg-[var(--color-surface-1)] transition-all duration-300 cursor-default overflow-hidden"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="text-sm font-semibold text-[var(--color-foreground)]">
+                          {skill.name}
+                        </h3>
+                        <span
+                          className="inline-block px-2 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider"
+                          style={{
+                            color: tagColors[skill.tag],
+                            backgroundColor: `color-mix(in oklch, ${tagColors[skill.tag]} 12%, transparent)`,
+                          }}
+                        >
+                          {skill.tag}
+                        </span>
+                      </div>
+
+                      <AnimatePresence>
+                        {active === i && (
+                          <motion.p
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="text-sm text-[var(--color-muted-foreground)] leading-relaxed mt-2"
+                          >
+                            {skill.description}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    <span className="font-mono text-[10px] text-[var(--color-muted-foreground)] opacity-50 shrink-0">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-                  <AnimatePresence>
-                    {active === i && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="text-sm text-[var(--color-muted-foreground)] leading-relaxed mt-2"
-                      >
-                        {skill.description}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <span className="font-mono text-[10px] text-[var(--color-muted-foreground)] opacity-50 shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-            </motion.div>
-          ))}
+          {/* Frame Footer */}
+          <div className="flex justify-between items-center border-t border-[var(--color-border)] px-6 py-3.5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              ) Capabilities
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+              10 Skills
+            </span>
+          </div>
         </div>
       </Container>
     </section>
