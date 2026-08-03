@@ -17,6 +17,16 @@
       "service": "landingpage"
     }
   ],
+  "routes": [
+    {
+      "pattern": "kalarislabs.com/*",
+      "zone_name": "kalarislabs.com"
+    },
+    {
+      "pattern": "www.kalarislabs.com/*",
+      "zone_name": "kalarislabs.com"
+    }
+  ],
   "images": {
     "binding": "IMAGES"
   },
