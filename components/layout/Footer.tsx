@@ -10,9 +10,9 @@ const footerColumns = [
     title: "Platform",
     links: [
       { label: "Overview", href: "/platform" },
-      { label: "Research Runtime", href: "/research-runtime" },
+      { label: "Research Runtime", href: "/research-orchestration" },
       { label: "Inference Engine", href: "/scientific-inference" },
-      { label: "Agent Skills", href: "/scientific-ai-agents" },
+      { label: "Agent Skills", href: "/agentic-science" },
       { label: "GPU Runtime", href: "/gpu-scientific-computing" },
       { label: "Verification", href: "/research-verification" },
     ],
@@ -39,9 +39,7 @@ const footerColumns = [
     links: [
       { label: "About", href: "/about" },
       { label: "Manifesto", href: "/manifesto" },
-      { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
-      { label: "Press", href: "/press" },
     ],
   },
 ];
