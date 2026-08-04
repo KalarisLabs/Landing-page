@@ -30,10 +30,8 @@ const footerColumns = [
     title: "Engineering",
     links: [
       { label: "Blog", href: "/blog" },
-      { label: "Documentation", href: "/docs" },
-      { label: "Open Source", href: "/open-source" },
+      { label: "Glossary", href: "/glossary" },
       { label: "Architecture", href: "/infrastructure" },
-      { label: "Changelog", href: "/changelog" },
     ],
   },
   {

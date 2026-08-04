@@ -11,7 +11,7 @@ import { Container } from "@/components/ui/Container";
 const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "Research", href: "/research" },
-  { label: "Open Source", href: "/open-source" },
+  { label: "Glossary", href: "/glossary" },
   { label: "Blog", href: "/blog" },
   { label: "Manifesto", href: "/manifesto" },
 ];

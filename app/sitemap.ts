@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { glossaryTerms } from "@/data/glossary";
 
 const blogPosts = [
   "serving-100b-models-consumer-hardware",
@@ -18,6 +19,7 @@ const staticPages = [
   "/research",
   "/security",
   "/terms",
+  "/glossary",
 ];
 
 const programmaticPages = [
@@ -56,5 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticUrls, ...blogUrls, ...programmaticUrls];
+  const glossaryUrls = glossaryTerms.map((term) => ({
+    url: `${baseUrl}/glossary/${term.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
+
+  return [...staticUrls, ...blogUrls, ...programmaticUrls, ...glossaryUrls];
 }
