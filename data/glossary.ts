@@ -13,7 +13,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     shortDefinition: "AI systems that autonomously plan, execute, and adapt multi-step tasks toward a goal with minimal human oversight.",
     definition:
       "Agentic AI refers to systems that go beyond generating a single response to autonomously planning and executing multi-step workflows. Unlike chatbots, agentic systems maintain state, make tool calls, verify intermediate results, and adapt their strategy when an approach fails. In scientific research, agentic AI can propose hypotheses, design experiments, execute simulations, and revise its plan based on outcomes. Kalaris Labs builds the orchestration and verification infrastructure that makes agentic workflows reliable enough for autonomous R&D.",
-    relatedTerms: ["autonomous-scientific-discovery", "research-orchestration", "scientific-copilot"],
+    relatedTerms: ["autonomous-scientific-discovery", "research-orchestration", "scientific-copilot", "seo-agent"],
   },
   {
     term: "Autonomous Scientific Discovery",
@@ -53,7 +53,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     shortDefinition: "Coordinating multi-agent graphs to execute complex, multi-step research workflows reliably.",
     definition:
       "Research orchestration is the coordination layer for scientific workflows involving multiple AI agents, tools, and long-running tasks. It manages agent graphs, distributes subtasks, tracks state across steps that may take hours or days, and handles retries when an agent produces an invalid or hallucinated intermediate result. Reliable orchestration is what separates research prototypes from reproducible scientific infrastructure.",
-    relatedTerms: ["agentic-ai", "fault-tolerant-research-runtime", "autonomous-scientific-discovery"],
+    relatedTerms: ["agentic-ai", "fault-tolerant-research-runtime", "autonomous-scientific-discovery", "seo-agent"],
   },
   {
     term: "Research Verification",
@@ -61,7 +61,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     shortDefinition: "Automated systems for validating citations, checking reproducibility, and preventing hallucination in AI-driven research.",
     definition:
       "Research verification is the discipline of automatically checking the outputs of AI research agents before they are trusted: validating that citations exist and say what they claim, verifying numerical results are reproducible, and catching hallucinations that would otherwise propagate through a research pipeline. Verification is the critical safety layer that makes autonomous scientific discovery trustworthy.",
-    relatedTerms: ["research-orchestration", "autonomous-rd", "scientific-inference"],
+    relatedTerms: ["research-orchestration", "autonomous-rd", "scientific-inference", "ai-overview-optimization"],
   },
   {
     term: "Scientific Copilot",
@@ -150,5 +150,29 @@ export const glossaryTerms: GlossaryTerm[] = [
     definition:
       "Model serving is the practice of deploying trained models as reliable, low-latency, high-throughput services. Production serving concerns include batching, quantization, autoscaling, and GPU utilization. For research platforms, good model serving determines whether interactive scientific copilots and agent workflows feel responsive or sluggish.",
     relatedTerms: ["scientific-inference", "llm-inference", "gpu-scientific-computing"],
+  },
+  {
+    term: "Generative Engine Optimization",
+    slug: "generative-engine-optimization",
+    shortDefinition: "Optimizing web content to be reliably indexed, summarized, and cited by LLM-powered answer engines like ChatGPT, Perplexity, and Gemini.",
+    definition:
+      "Generative Engine Optimization (GEO) is the strategy of structuring and validating web content specifically for Large Language Model (LLM) answer systems. Unlike traditional SEO focused on keyword density, GEO prioritizes explicit information hierarchy, authoritative schema markup, direct question-and-answer patterns, and verifiable data sources. This ensures that conversational search engines can easily parse, ingest, and accurately cite the site's content.",
+    relatedTerms: ["ai-overview-optimization", "seo-agent", "agentic-ai"],
+  },
+  {
+    term: "AI Overview Optimization",
+    slug: "ai-overview-optimization",
+    shortDefinition: "Optimizing digital assets to appear in Google's AI Overviews, providing clear summaries and definitions that AI models can extract.",
+    definition:
+      "AI Overview Optimization (AIO) is the discipline of tailoring web resources for Google's AI-generated search overviews. By structuring content using strict Answer Engine Optimization (AEO) rules—such as concise definitions, clear headers, bulleted takeaways, and rich tables—brands can dramatically improve their citation share in AI Overviews, preserving search visibility as click-through rates migrate directly to AI results.",
+    relatedTerms: ["generative-engine-optimization", "seo-agent", "research-verification"],
+  },
+  {
+    term: "SEO Agent",
+    slug: "seo-agent",
+    shortDefinition: "An autonomous AI agent that continuously audits, optimizes, and indexes digital assets for traditional and AI search engines.",
+    definition:
+      "An SEO Agent is an autonomous, multi-agent system designed to manage and maximize search and citation visibility. Operating on a continuous reinforcement loop, the agent monitors brand presence in Google AI Overviews and generative engine responses (ChatGPT, Perplexity, Gemini), identifies visibility and citation gaps, generates real-time schema.org enhancements, and dynamically syncs discoverability tools like sitemaps, robots.txt, and llms.txt.",
+    relatedTerms: ["generative-engine-optimization", "ai-overview-optimization", "research-orchestration"],
   },
 ];

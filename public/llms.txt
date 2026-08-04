@@ -4,6 +4,9 @@
 ## About
 Kalaris Labs is building the infrastructure to transition scientific discovery from an artisanal, human-bound process to an industrial, computationally scalable one. We provide self-learning AI systems, GPU-native execution, optimized inference, multi-agent orchestration, and verifiable research workflows.
 
+## AI Search, AIO, & GEO Indexing
+We embrace Generative Engine Optimization (GEO) and AI Overview Optimization (AIO) using autonomous SEO Agents. Our content is fully structured, schemas are verified, and we actively allow LLM citation-engine crawlers to crawl and index our platform.
+
 ## Links
 - Website: https://kalarislabs.com
 - Manifesto: https://kalarislabs.com/manifesto

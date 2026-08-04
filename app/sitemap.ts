@@ -5,6 +5,7 @@ const blogPosts = [
   "serving-100b-models-consumer-hardware",
   "automating-literature-review",
   "fault-tolerant-research-runtime",
+  "seo-agents-aio-geo-strategies",
 ];
 
 const staticPages = [
@@ -31,6 +32,7 @@ const programmaticPages = [
   "autonomous-rd",
   "scientific-copilot",
   "gpu-scientific-computing",
+  "seo-agent",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

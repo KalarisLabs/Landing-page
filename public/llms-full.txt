@@ -29,6 +29,12 @@ Automated reproducibility checking, statistical validation, and adversarial revi
 ### 5. Multi-Agent Graph
 A directed graph of agents (Planner, Researcher, Critic, Verifier, Publisher) that collaborate and converge on verified scientific output.
 
+### 6. SEO Agents & AIO/GEO Strategies
+Autonomous SEO agents running on the Kalaris orchestration runtime to continuously monitor and optimize brand visibility. These agents implement:
+- Generative Engine Optimization (GEO): Designing explicit schemas, clean Q&A definitions, and verified factual citations that Perplexity, ChatGPT, and Gemini trust and cite.
+- AI Overview Optimization (AIO): Injecting concise bulleted takeaways, structured summary headers, and Answer Engine Optimization (AEO) patterns that Google AI Overviews easily extract.
+- Automated Indexing & Crawler Loops: Dynamically syncing sitemaps, robots.txt bot rules, and llms.txt structures based on current search space performance.
+
 ## Technology Stack
 - Next.js 15 (App Router)
 - React 19

@@ -8,24 +8,38 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/api/", "/_next/", "/static/", "/*.json$"],
       },
+      // Allow Search/Citation bots for Generative Engine Optimization (GEO) & AIO visibility
+      {
+        userAgent: "ChatGPT-User",
+        allow: "/",
+      },
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+      },
+      {
+        userAgent: "ClaudeBot",
+        allow: "/",
+      },
+      {
+        userAgent: "Claude-Web",
+        allow: "/",
+      },
+      {
+        userAgent: "anthropic-ai",
+        allow: "/",
+      },
+      // Keep background training crawlers restricted if needed, but allow citation indexers
       {
         userAgent: "GPTBot",
         disallow: "/",
       },
       {
-        userAgent: "ChatGPT-User",
-        disallow: "/",
-      },
-      {
         userAgent: "CCBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "anthropic-ai",
-        disallow: "/",
-      },
-      {
-        userAgent: "Claude-Web",
         disallow: "/",
       },
     ],

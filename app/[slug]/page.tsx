@@ -37,6 +37,10 @@ const seoPages: Record<string, { title: string; description: string }> = {
     title: "GPU Scientific Computing",
     description: "Leveraging raw CUDA execution and TensorRT for massive-scale computational biology and physics.",
   },
+  "seo-agent": {
+    title: "SEO Agent",
+    description: "Deploying autonomous SEO agents and modern AIO/GEO strategies to guarantee maximum visibility and robust indexing in generative engines.",
+  },
 };
 
 export function generateStaticParams() {

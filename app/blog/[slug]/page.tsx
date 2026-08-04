@@ -26,6 +26,13 @@ const blogPosts: Record<string, { title: string; date: string; category: string;
     description: "Scientific experiments can take days to run. Here's how we ensure agentic workflows don't fail when intermediate steps hallucinate.",
     content: "Unlike standard API requests which take milliseconds, scientific orchestration workflows can run for days. This requires a completely different approach to infrastructure, focusing on state persistence, checkpointing, and graceful recovery from agent hallucinations...",
   },
+  "seo-agents-aio-geo-strategies": {
+    title: "Autonomous SEO Agents: Mastering AIO and GEO in 2026",
+    date: "2026-09-01",
+    category: "Infrastructure",
+    description: "How autonomous SEO agents leverage multi-agent orchestration and schema verification to maximize brand visibility and citation rates in AI Overviews and Generative Engines.",
+    content: "In 2026, the search landscape has shifted fundamentally. Organic search clicks have dropped significantly as AI Overviews (AIO) and generative answer engines (ChatGPT, Perplexity, Gemini) satisfy user intent directly on the results page. In this post, we introduce how autonomous SEO agents built on Kalaris infrastructure implement multi-agent orchestration to continuously audit off-page trust signals and verify on-page structured schema, turning search optimization into a scalable, closed-loop engineering discipline.",
+  },
 };
 
 export function generateStaticParams() {
