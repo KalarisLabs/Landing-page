@@ -54,7 +54,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: page.title,
     description: page.description,
-  };
+    alternates: { canonical: `/${slug}` }
+    };
 }
 
 export default async function ProgrammaticSEOPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/research",
+  },
   title: "Research",
   description: "Publications, benchmarks, and datasets from Kalaris Labs.",
 };

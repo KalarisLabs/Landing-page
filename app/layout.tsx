@@ -1,9 +1,60 @@
 import type { Metadata } from "next";
+import localFont from 'next/font/local';
+import { IBM_Plex_Mono, Instrument_Serif, Syncopate } from 'next/font/google';
 import "./design-system.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Script from "next/script";
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: ['400', '500', '600'],
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-mono',
+  display: 'swap',
+});
+
+const instrumentSerif = Instrument_Serif({
+  weight: ['400'],
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  variable: '--font-instrument-serif',
+  display: 'swap',
+});
+
+const syncopate = Syncopate({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-syncopate',
+  display: 'swap',
+});
+
+const satoshi = localFont({
+  src: [
+    {
+      path: '../public/fonts/satoshi-400.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/satoshi-500.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/satoshi-700.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/satoshi-900.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-satoshi',
+  display: 'swap',
+});
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
@@ -57,13 +108,11 @@ export const metadata: Metadata = {
     description:
       "Building the infrastructure for agentic scientific computing — self-learning AI, GPU-native execution, multi-agent orchestration, and verifiable research workflows.",
   },
-  alternates: {
-    canonical: "https://kalarislabs.com",
-  },
+  manifest: "/manifest.webmanifest",
   icons: {
-    icon: "/assets/black logo kalaris logo ( geometric).png",
-    shortcut: "/assets/black logo kalaris logo ( geometric).png",
-    apple: "/assets/black logo kalaris logo ( geometric).png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   other: GSC_VERIFICATION ? { "google-site-verification": GSC_VERIFICATION } : {},
 };
@@ -81,7 +130,7 @@ export default function RootLayout({
         "@id": "https://kalarislabs.com/#organization",
         name: "Kalaris Labs",
         url: "https://kalarislabs.com",
-        logo: "https://kalarislabs.com/assets/black logo kalaris logo ( geometric).png",
+        logo: "https://kalarislabs.com/favicon.png",
         description: "Building the infrastructure for agentic scientific computing.",
         sameAs: [
           "https://github.com/kalarislabs",
@@ -112,11 +161,6 @@ export default function RootLayout({
         publisher: {
           "@id": "https://kalarislabs.com/#organization",
         },
-        potentialAction: {
-          "@type": "SearchAction",
-          target: "https://kalarislabs.com/search?q={search_term_string}",
-          "query-input": "required name=search_term_string",
-        },
       },
       {
         "@type": "SoftwareApplication",
@@ -137,20 +181,8 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="light" suppressHydrationWarning>
+    <html lang="en" className={`light ${satoshi.variable} ${ibmPlexMono.variable} ${instrumentSerif.variable} ${syncopate.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Syncopate:wght@700;900&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="icon" type="image/png" href="/assets/black logo kalaris logo ( geometric).png" />
-        <link rel="canonical" href="https://kalarislabs.com" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {GA_MEASUREMENT_ID && (
           <>

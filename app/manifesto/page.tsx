@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/manifesto",
+  },
   title: "The Manifesto",
   description: "Why we are building the infrastructure for autonomous science.",
 };

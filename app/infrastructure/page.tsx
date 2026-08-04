@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/infrastructure",
+  },
   title: "Infrastructure",
   description: "GPU-native architecture for high-performance scientific workflows.",
 };

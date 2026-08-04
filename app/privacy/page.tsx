@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "/privacy",
+  },
   title: "Privacy Policy",
   description: "Privacy policy for Kalaris Labs.",
 };
