@@ -20,6 +20,17 @@ const staticPages = [
   "/terms",
 ];
 
+const programmaticPages = [
+  "agentic-science",
+  "autonomous-scientific-discovery",
+  "scientific-inference",
+  "research-orchestration",
+  "research-verification",
+  "autonomous-rd",
+  "scientific-copilot",
+  "gpu-scientific-computing",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://kalarislabs.com";
   const now = new Date();
@@ -38,5 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticUrls, ...blogUrls];
+  const programmaticUrls = programmaticPages.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticUrls, ...blogUrls, ...programmaticUrls];
 }
