@@ -16,6 +16,7 @@ const staticPages = [
   "/platform",
   "/privacy",
   "/research",
+  "/security",
   "/terms",
 ];
 
