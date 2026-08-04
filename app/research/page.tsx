@@ -6,9 +6,27 @@ export const metadata: Metadata = {
   description: "Publications, benchmarks, and datasets from Kalaris Labs.",
 };
 
+function ResearchSchema() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Kalaris Labs Research",
+    description: "Publications, benchmarks, datasets, and open problems in autonomous scientific computing from Kalaris Labs.",
+    hasPart: [
+      { "@type": "Article", name: "Publications", url: "https://kalarislabs.com/research#publications", description: "Technical reports, whitepapers, and peer-reviewed research." },
+      { "@type": "Dataset", name: "Benchmarks", url: "https://kalarislabs.com/research#benchmarks", description: "Standardized evaluations for scientific reasoning, planning, and inference optimization." },
+      { "@type": "Dataset", name: "Datasets", url: "https://kalarislabs.com/research#datasets", description: "Open datasets curated for training and evaluating scientific AI agents." },
+      { "@type": "CreativeWork", name: "Open Problems", url: "https://kalarislabs.com/research#open-problems", description: "Key challenges in verification, multi-agent orchestration, and hardware optimization." },
+    ],
+  };
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+}
+
 export default function ResearchPage() {
   return (
     <div className="pt-32 pb-24 md:pt-48 md:pb-32 min-h-screen">
+      <ResearchSchema />
       <Container>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-8">
           Research

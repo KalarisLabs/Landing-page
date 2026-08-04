@@ -6,9 +6,49 @@ export const metadata: Metadata = {
   description: "Learn about Kalaris Labs and our mission to build the infrastructure for autonomous science.",
 };
 
+function AboutSchema() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Kalaris Labs",
+    description: "We are a team of researchers, engineers, and infrastructure builders dedicated to accelerating the pace of scientific discovery through autonomous AI systems.",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Kalaris Labs",
+      url: "https://kalarislabs.com",
+      logo: "https://kalarislabs.com/assets/black logo kalaris logo ( geometric).png",
+      description: "Building the infrastructure for agentic scientific computing.",
+      foundingDate: "2024",
+      areaServed: "Global",
+      knowsAbout: [
+        "Agentic AI",
+        "Scientific Computing",
+        "GPU Inference",
+        "Multi-Agent Systems",
+        "Research Automation",
+      ],
+      sameAs: [
+        "https://github.com/kalarislabs",
+        "https://twitter.com/kalarislabs",
+        "https://linkedin.com/company/kalarislabs",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+1-000-000-0000",
+        contactType: "customer service",
+        availableLanguage: ["English"],
+        email: "hello@kalarislabs.com",
+      },
+    },
+  };
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+}
+
 export default function AboutPage() {
   return (
     <div className="pt-32 pb-24 md:pt-48 md:pb-32 min-h-screen">
+      <AboutSchema />
       <Container>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-8">
           About Kalaris Labs

@@ -6,9 +6,27 @@ export const metadata: Metadata = {
   description: "GPU-native architecture for high-performance scientific workflows.",
 };
 
+function InfrastructureSchema() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Kalaris Labs Infrastructure",
+    description: "GPU-native architecture for high-performance scientific workflows: CUDA Native, Distributed Inference, Mixed Precision & TensorRT, Knowledge Graph Storage.",
+    hasPart: [
+      { "@type": "SoftwareApplication", name: "CUDA Native", description: "Direct CUDA kernel execution for maximum throughput." },
+      { "@type": "SoftwareApplication", name: "Distributed Inference", description: "Multi-node, multi-GPU sharding with automatic load balancing." },
+      { "@type": "SoftwareApplication", name: "Mixed Precision & TensorRT", description: "Automatic precision selection (FP16/INT8) and TensorRT optimization." },
+      { "@type": "SoftwareApplication", name: "Knowledge Graph Storage", description: "Scalable graph database for semantic relationships in scientific data." },
+    ],
+  };
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+}
+
 export default function InfrastructurePage() {
   return (
     <div className="pt-32 pb-24 md:pt-48 md:pb-32 min-h-screen">
+      <InfrastructureSchema />
       <Container>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-8">
           Infrastructure

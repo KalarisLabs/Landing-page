@@ -3,6 +3,10 @@ import "./design-system.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import Script from "next/script";
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kalarislabs.com"),
@@ -61,6 +65,7 @@ export const metadata: Metadata = {
     shortcut: "/assets/black logo kalaris logo ( geometric).png",
     apple: "/assets/black logo kalaris logo ( geometric).png",
   },
+  other: GSC_VERIFICATION ? { "google-site-verification": GSC_VERIFICATION } : {},
 };
 
 export default function RootLayout({
@@ -76,9 +81,19 @@ export default function RootLayout({
         "@id": "https://kalarislabs.com/#organization",
         name: "Kalaris Labs",
         url: "https://kalarislabs.com",
-        description:
-          "Building the infrastructure for agentic scientific computing.",
-        sameAs: ["https://github.com/kalarislabs"],
+        logo: "https://kalarislabs.com/assets/black logo kalaris logo ( geometric).png",
+        description: "Building the infrastructure for agentic scientific computing.",
+        sameAs: [
+          "https://github.com/kalarislabs",
+          "https://twitter.com/kalarislabs",
+          "https://linkedin.com/company/kalarislabs",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+1-000-000-0000",
+          contactType: "customer service",
+          availableLanguage: ["English"],
+        },
       },
       {
         "@type": "ResearchOrganization",
@@ -115,6 +130,7 @@ export default function RootLayout({
           price: "0",
           priceCurrency: "USD",
           description: "Contact for pricing",
+          availability: "https://schema.org/InStock",
         },
       },
     ],
@@ -124,11 +140,7 @@ export default function RootLayout({
     <html lang="en" className="light" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Syncopate:wght@700;900&display=swap"
           rel="stylesheet"
@@ -137,15 +149,31 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
           rel="stylesheet"
         />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/assets/black logo kalaris logo ( geometric).png"
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <link rel="icon" type="image/png" href="/assets/black logo kalaris logo ( geometric).png" />
+        <link rel="canonical" href="https://kalarislabs.com" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_MEASUREMENT_ID}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body>
         <SmoothScroll>

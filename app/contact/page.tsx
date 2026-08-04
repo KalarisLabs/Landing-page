@@ -6,9 +6,52 @@ export const metadata: Metadata = {
   description: "Get in touch with Kalaris Labs.",
 };
 
+function ContactSchema() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Kalaris Labs",
+    description: "Get in touch with Kalaris Labs for general inquiries, research partnerships, or career opportunities.",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Kalaris Labs",
+      url: "https://kalarislabs.com",
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+1-000-000-0000",
+          contactType: "customer service",
+          availableLanguage: ["English"],
+          email: "hello@kalarislabs.com",
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "research partnerships",
+          availableLanguage: ["English"],
+          email: "research@kalarislabs.com",
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "careers",
+          availableLanguage: ["English"],
+          email: "careers@kalarislabs.com",
+        },
+      ],
+      sameAs: [
+        "https://github.com/kalarislabs",
+        "https://twitter.com/kalarislabs",
+        "https://linkedin.com/company/kalarislabs",
+      ],
+    },
+  };
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+}
+
 export default function ContactPage() {
   return (
     <div className="pt-32 pb-24 md:pt-48 md:pb-32 min-h-screen">
+      <ContactSchema />
       <Container>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-8">
           Contact Us

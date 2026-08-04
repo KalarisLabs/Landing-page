@@ -101,12 +101,34 @@ const catalogItems = [
   }
 ];
 
+function PlatformSchema() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Kalaris Labs Platform Catalog",
+    description: "Six infrastructure layers for agentic scientific computing: Research Runtime, Multi-Agent Graph, Inference Engine, Verification System, GPU Runtime, and Agent Skills.",
+    hasPart: catalogItems.map((item, i) => ({
+      "@type": "SoftwareApplication",
+      position: i + 1,
+      name: item.title,
+      description: item.desc,
+      applicationCategory: "ScientificApplication",
+      operatingSystem: "Cloud",
+    })),
+  };
+
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+  );
+}
+
 export default function PlatformPage() {
   const [activeTab, setActiveTab] = useState(0);
   const activeItem = catalogItems[activeTab];
 
   return (
     <div className={styles.pageWrapper}>
+      <PlatformSchema />
       <Container>
         <div className={styles.catalogFrame}>
           {/* Header Bar */}

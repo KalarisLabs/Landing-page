@@ -6,9 +6,38 @@ export const metadata: Metadata = {
   description: "Why we are building the infrastructure for autonomous science.",
 };
 
+function ManifestoSchema() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "The Kalaris Manifesto: Why We Are Building the Infrastructure for Autonomous Science",
+    description: "Science is too important to be bottlenecked by human limits. The transition from artisanal, human-bound research to industrial, computationally scalable autonomous R&D.",
+    author: {
+      "@type": "Organization",
+      name: "Kalaris Labs",
+      url: "https://kalarislabs.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Kalaris Labs",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://kalarislabs.com/assets/black logo kalaris logo ( geometric).png",
+      },
+    },
+    datePublished: "2026-01-01",
+    dateModified: "2026-08-03",
+    articleSection: "Manifesto",
+    keywords: "autonomous science, agentic AI, research infrastructure, scientific computing",
+  };
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+}
+
 export default function ManifestoPage() {
   return (
     <div className="pt-32 pb-24 md:pt-48 md:pb-32 min-h-screen">
+      <ManifestoSchema />
       <Container>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-display italic tracking-tight mb-12">
           The Kalaris Manifesto
