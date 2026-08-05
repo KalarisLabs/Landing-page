@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight, Settings } from "lucide-react";
 import Link from "next/link";
@@ -8,17 +8,35 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import styles from "./HeroSection.module.css";
 
+/**
+ * AsciiScrambleText handles scramble animations during initial mount or on hover.
+ * Optimization: Consolidated two separate, competing hooks into a single effect.
+ * Prevents concurrent intervals, state fighting, resource leaks, and unnecessary re-renders.
+ */
 function AsciiScrambleText({ text, active, animateOnMount = false }: { text: string; active: boolean; animateOnMount?: boolean }) {
   const [displayText, setDisplayText] = useState(text);
+  const hasAnimatedOnMount = useRef(false);
 
   useEffect(() => {
-    if (!active) {
+    // Determine if we need to run the scramble animation
+    const shouldAnimate = active || (animateOnMount && !hasAnimatedOnMount.current);
+
+    if (!shouldAnimate) {
       setDisplayText(text);
       return;
     }
 
+    // Mark mount animation as completed so it doesn't run again on subsequent changes
+    if (animateOnMount && !active) {
+      hasAnimatedOnMount.current = true;
+    }
+
     let iteration = 0;
     const chars = "XYZ*+-/\\%=#@$&0123456789";
+    // Reuse original step speed and tick interval configuration
+    const step = active ? 1 / 3 : 1 / 4;
+    const delay = active ? 25 : 20;
+
     const interval = setInterval(() => {
       setDisplayText(
         text
@@ -34,36 +52,11 @@ function AsciiScrambleText({ text, active, animateOnMount = false }: { text: str
       if (iteration >= text.length) {
         clearInterval(interval);
       }
-      iteration += 1 / 3;
-    }, 25);
+      iteration += step;
+    }, delay);
 
     return () => clearInterval(interval);
-  }, [active, text]);
-
-  useEffect(() => {
-    if (animateOnMount) {
-      let iteration = 0;
-      const chars = "XYZ*+-/\\%=#@$&0123456789";
-      const interval = setInterval(() => {
-        setDisplayText(
-          text
-            .split("")
-            .map((char, index) => {
-              if (char === " ") return " ";
-              if (index < iteration) return text[index];
-              return chars[Math.floor(Math.random() * chars.length)];
-            })
-            .join("")
-        );
-
-        if (iteration >= text.length) {
-          clearInterval(interval);
-        }
-        iteration += 1 / 4;
-      }, 20);
-      return () => clearInterval(interval);
-    }
-  }, [animateOnMount, text]);
+  }, [active, animateOnMount, text]);
 
   return <span>{displayText}</span>;
 }
