@@ -106,7 +106,12 @@ export default function AgentSkillsInteractive() {
                   transition={{ duration: 0.4, delay: i * 0.04 }}
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
-                  className="group relative p-5 bg-[var(--color-surface-0)] hover:bg-[var(--color-surface-1)] transition-all duration-300 cursor-default overflow-hidden"
+                  onFocus={() => setActive(i)}
+                  onBlur={() => setActive(null)}
+                  tabIndex={0}
+                  role="button"
+                  aria-expanded={active === i}
+                  className="group relative p-5 bg-[var(--color-surface-0)] hover:bg-[var(--color-surface-1)] focus-visible:bg-[var(--color-surface-1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-accent-blue)] transition-all duration-300 cursor-default overflow-hidden"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
