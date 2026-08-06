@@ -137,20 +137,20 @@ export default function AgentSkillsInteractive() {
                         </span>
                       </div>
 
-                      <AnimatePresence>
-                        {active === i && (
-                          <motion.p
-                            id={`skill-desc-${i}`}
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="text-sm text-[var(--color-muted-foreground)] leading-relaxed mt-2"
-                          >
-                            {skill.description}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
+                      <motion.p
+                        id={`skill-desc-${i}`}
+                        aria-hidden={active !== i}
+                        initial={false}
+                        animate={{
+                          height: active === i ? "auto" : 0,
+                          opacity: active === i ? 1 : 0,
+                          marginTop: active === i ? 8 : 0,
+                        }}
+                        transition={{ duration: 0.25 }}
+                        className="text-sm text-[var(--color-muted-foreground)] leading-relaxed overflow-hidden"
+                      >
+                        {skill.description}
+                      </motion.p>
                     </div>
 
                     <span className="font-mono text-[10px] text-[var(--color-muted-foreground)] opacity-50 shrink-0">
