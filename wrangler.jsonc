@@ -3,7 +3,7 @@
   "name": "landingpage",
   "main": ".open-next/worker.js",
   "build": {
-    "command": "pnpm exec opennextjs-cloudflare build"
+    "command": "npm exec -- opennextjs-cloudflare build"
   },
   "compatibility_date": "2026-08-03",
   "compatibility_flags": [
