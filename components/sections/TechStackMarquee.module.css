@@ -57,6 +57,7 @@
   width: max-content;
   animation: marquee var(--duration-slower) linear infinite;
   animation-duration: 40s;
+  will-change: transform; /* Hint to the browser to layer-promote the element for high-performance hardware-accelerated transitions */
 }
 
 @keyframes marquee {
