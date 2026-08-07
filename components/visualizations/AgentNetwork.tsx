@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -50,11 +50,43 @@ function ParticleNetwork() {
 }
 
 export default function AgentNetwork() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // PERFORMANCE OPTIMIZATION: Wrap the Canvas inside an IntersectionObserver.
+    // Since the Canvas is positioned deep below the fold (in the Multi-Agent Execution section),
+    // mounting and rendering it on initial load is wasteful. It allocates WebGL resources,
+    // compiles shaders, and runs a render loop at 60 FPS in the background.
+    // By only mounting when within or close to the viewport (200px margin), we free up CPU/GPU cycles
+    // during initial page load, improving LCP, FID, and reducing battery/power consumption.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: "200px" } // Pre-render slightly before scrolling into view for a seamless experience
+    );
+
+    const currentRef = containerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="w-full h-[400px] md:h-[600px] absolute inset-0 -z-10 opacity-30 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-        <ParticleNetwork />
-      </Canvas>
+    <div ref={containerRef} className="w-full h-[400px] md:h-[600px] absolute inset-0 -z-10 opacity-30 pointer-events-none">
+      {isVisible && (
+        <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
+          <ParticleNetwork />
+        </Canvas>
+      )}
     </div>
   );
 }
