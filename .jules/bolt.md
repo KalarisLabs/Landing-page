@@ -1,0 +1,3 @@
+## 2025-05-24 - Pausing WebGL Rendering Outside Viewport
+**Learning:** React Three Fiber Canvas components rendering continuously at 60fps+ consume significant CPU/GPU resources and battery power even when completely scrolled off-screen. Toggling the canvas `frameloop` prop dynamically from `"always"` to `"never"` via an `IntersectionObserver` when the element is not intersecting successfully pauses WebGL frame execution and lowers CPU/GPU cycles to exactly 0% without losing the WebGL context or state.
+**Action:** Always wrap heavy background three.js / WebGL canvases in an Intersection Observer to pause their animation loop and renderers when off-screen.
