@@ -57,6 +57,7 @@
   width: max-content;
   animation: marquee var(--duration-slower) linear infinite;
   animation-duration: 40s;
+  will-change: transform;
 }
 
 @keyframes marquee {
