@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -50,11 +50,46 @@ function ParticleNetwork() {
 }
 
 export default function AgentNetwork() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: "100px" } // Load slightly before coming into view
+    );
+
+    const currentRef = containerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
   return (
-    <div className="w-full h-[400px] md:h-[600px] absolute inset-0 -z-10 opacity-30 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-        <ParticleNetwork />
-      </Canvas>
+    <div
+      ref={containerRef}
+      className="w-full h-[400px] md:h-[600px] absolute inset-0 -z-10 opacity-30 pointer-events-none"
+    >
+      {/*
+        We dynamically toggle between 'always' and 'never' for frameloop.
+        Additionally, we unmount the Canvas when off-screen to free up GPU memory.
+      */}
+      {isVisible && (
+        <Canvas
+          camera={{ position: [0, 0, 8], fov: 60 }}
+          frameloop={isVisible ? "always" : "never"}
+        >
+          <ParticleNetwork />
+        </Canvas>
+      )}
     </div>
   );
 }
