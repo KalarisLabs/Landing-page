@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -50,11 +50,51 @@ function ParticleNetwork() {
 }
 
 export default function AgentNetwork() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hasBeenInView, setHasBeenInView] = useState(false);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isIntersecting = entry.isIntersecting;
+        setInView(isIntersecting);
+        if (isIntersecting) {
+          setHasBeenInView(true);
+        }
+      },
+      {
+        rootMargin: "200px", // Pre-load slightly before coming into view
+        threshold: 0.01,
+      }
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.unobserve(container);
+    };
+  }, []);
+
   return (
-    <div className="w-full h-[400px] md:h-[600px] absolute inset-0 -z-10 opacity-30 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-        <ParticleNetwork />
-      </Canvas>
+    <div
+      ref={containerRef}
+      className="w-full h-[400px] md:h-[600px] absolute inset-0 -z-10 opacity-30 pointer-events-none"
+    >
+      {/*
+        PERFORMANCE OPTIMIZATION:
+        1. Lazy-mount the Canvas only after it has been in/near the viewport once (prevents initial page load main-thread blocking).
+        2. Dynamically toggle the `frameloop` prop between "always" and "never" when off-screen.
+           This reduces background CPU/GPU usage to 0% when the user scrolls away, while retaining WebGL context and scene state.
+      */}
+      {hasBeenInView && (
+        <Canvas camera={{ position: [0, 0, 8], fov: 60 }} frameloop={inView ? "always" : "never"}>
+          <ParticleNetwork />
+        </Canvas>
+      )}
     </div>
   );
 }
