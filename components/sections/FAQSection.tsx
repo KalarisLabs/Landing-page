@@ -87,19 +87,25 @@ export default function FAQSection() {
                   }`}
                 >
                   <button
+                    id={`faq-button-${index}`}
+                    aria-expanded={openIndex === index}
+                    aria-controls={`faq-panel-${index}`}
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="flex items-center justify-between w-full p-6 text-left hover:bg-[var(--color-surface-1)] transition-colors"
+                    className="flex items-center justify-between w-full p-6 text-left hover:bg-[var(--color-surface-1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-accent-blue)] focus-visible:bg-[var(--color-surface-1)] transition-colors"
                   >
                     <span className="text-[0.9375rem] font-medium text-[var(--color-foreground)] pr-8">
                       {faq.question}
                     </span>
-                    <span className="text-[var(--color-muted-foreground)] shrink-0">
+                    <span className="text-[var(--color-muted-foreground)] shrink-0" aria-hidden="true">
                       {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
                     </span>
                   </button>
                   <AnimatePresence>
                     {openIndex === index && (
                       <motion.div
+                        id={`faq-panel-${index}`}
+                        role="region"
+                        aria-labelledby={`faq-button-${index}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
